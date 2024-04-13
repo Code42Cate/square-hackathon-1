@@ -1,4 +1,4 @@
-# ZEISS ZKM Prototype
+# SQUARE HACKATHON
 
 ## Features
 
