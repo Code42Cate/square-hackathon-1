@@ -9,10 +9,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="antialiased">
-        <div className="backdrop" />
-        {children}
-      </body>
+      <body className="bg-white antialiased">{children}</body>
     </html>
   );
 }

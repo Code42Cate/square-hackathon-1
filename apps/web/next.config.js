@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   transpilePackages: ["ui"],
   images: {
-    domains: [""],
+    domains: ["images.unsplash.com"],
   },
   experimental: {
     serverActions: true,
