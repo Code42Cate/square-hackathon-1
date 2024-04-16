@@ -4,7 +4,17 @@ import { toast, Toaster } from "sonner";
 import React from "react";
 import Map from "@/components/map";
 import { Button } from "@ui/components/ui/button";
-import { EyeIcon, MapIcon } from "lucide-react";
+import {
+  CopyIcon,
+  EyeIcon,
+  Facebook,
+  FacebookIcon,
+  InstagramIcon,
+  MailIcon,
+  MapIcon,
+  TwitterIcon,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   const [showMap, setShowMap] = React.useState(false);
@@ -15,17 +25,9 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="mx-auto flex max-w-6xl flex-col">
+    <div className="mx-auto flex max-w-7xl flex-col">
       <Toaster />
-
-      <div className="flex hidden h-16 w-full flex-row items-center justify-between">
-        <div>Create Campaign</div>
-        <div className="font-bold text-green-600">
-          Impact <sup>2</sup>
-        </div>
-        <div>Login</div>
-      </div>
-      <main className="mt-10 grid grid-cols-3 gap-6">
+      <main className="grid grid-cols-3 gap-6">
         <h1 className="col-span-3 text-4xl font-bold">
           New Playground in Karlsruher Oststadt
         </h1>
@@ -100,22 +102,86 @@ export default function Page() {
               of 50.000€ goal reached
             </div>
           </div>
-          <div className="relative h-2 rounded-full bg-green-200">
-            <div className="h-2 w-4/5 rounded-full bg-green-500" />
+          <div className="relative h-2 rounded-full bg-sky-200">
+            <div className="h-2 w-4/5 rounded-full bg-sky-500" />
           </div>
-          <div className="h-60 w-full rounded-2xl border border-neutral-300 bg-gray-50 shadow-sm">
-            <Image
-              src="/mapbox.png"
-              width={300}
-              height={300}
-              alt="Mapbox"
-              className="h-full w-full rounded-2xl object-cover"
+          <div>32 Karlsruher shops already support this project</div>
+          <Button
+            variant="secondary"
+            className="w-full py-6 text-lg"
+            onClick={() => {
+              setShowMap(true);
+            }}
+          >
+            Find local shops
+          </Button>
+          <div className="flex flex-row items-center justify-between gap-2">
+            <Button variant="outline">
+              <TwitterIcon />
+            </Button>
+            <Button variant="outline">
+              <InstagramIcon />
+            </Button>
+            <Button variant="outline">
+              <FacebookIcon />
+            </Button>
+            <Button variant="outline">
+              <MailIcon />
+            </Button>
+            <Button variant="outline">
+              <CopyIcon />
+            </Button>
+          </div>
+          <div className="mt-4 flex flex-col gap-4">
+            <h3 className="text-lg font-medium">Recent supporters</h3>
+            <SocialProof
+              img="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              name="Vasilis Xanthakis"
+              amount="3"
+              item="coffees"
+              shop="Intro Café"
+            />
+            <SocialProof
+              img="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              name="Schonas Jolz"
+              amount="42"
+              item="books"
+              shop="Buchhandlung Dummbatz"
+            />{" "}
+            <SocialProof
+              img="https://images.unsplash.com/photo-1488477304112-4944851de03d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              name="Niglas"
+              item="cakes"
+              amount="3"
+              shop="Bäckerei Konditorei"
             />
           </div>
-          <div className="h-60 w-full rounded-2xl border border-neutral-300 bg-gray-50 shadow-sm"></div>
-          <div className="h-60 w-full rounded-2xl border border-neutral-300 bg-gray-50 shadow-sm"></div>
         </div>
       </main>
+    </div>
+  );
+}
+
+function SocialProof({ img, name, shop, item, amount }) {
+  return (
+    <div className="flex w-full flex-row gap-2">
+      <Image
+        alt="Product image"
+        className="aspect-square rounded-md object-cover"
+        height="64"
+        src={img}
+        width="64"
+      />
+
+      <div className="flex flex-col gap-2">
+        <div>{name}</div>
+        <div>
+          {amount} {item} in{" "}
+          <Link href="" className="underline underline-offset-2">
+            {shop}
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

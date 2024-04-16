@@ -37,7 +37,7 @@ export default function Map() {
   return (
     <div
       ref={mapContainer}
-      className="h-[400px] w-full overflow-hidden rounded-2xl border"
+      className="h-full min-h-[400px] w-full overflow-hidden rounded-2xl border"
     />
   );
 }

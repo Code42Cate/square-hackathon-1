@@ -16,24 +16,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-8">
-      <div className="mt-2 flex h-16 w-full flex-row items-center justify-between">
-        <Link
-          href="/"
-          className="hover:scale-102 cursor-pointer rounded-full border border-gray-500 px-2 py-1 text-gray-700 hover:border-gray-700 hover:text-gray-900 hover:transition-all"
-        >
-          Create Campaign
-        </Link>
-        <div className="text-2xl font-medium text-green-600">
-          Impact <sup>2</sup>
-        </div>
-        <Link
-          href="/"
-          className="hover:scale-102 cursor-pointer rounded-full border border-gray-500 px-2 py-1 text-gray-700 hover:border-gray-700 hover:text-gray-900 hover:transition-all"
-        >
-          Join as a local seller
-        </Link>
-      </div>
+    <>
       <h1 className="text-3xl font-medium">
         Create a campaign to support your Karlsruhe
       </h1>
@@ -59,8 +42,8 @@ export default function Page() {
                 of 50.000€ goal reached
               </div>
             </div>
-            <div className="relative h-2 rounded-full bg-green-200">
-              <div className="h-2 w-4/5 rounded-full bg-green-500" />
+            <div className="relative h-2 rounded-full bg-sky-200">
+              <div className="h-2 w-4/5 rounded-full bg-sky-500" />
             </div>
           </div>
         </div>
@@ -129,8 +112,6 @@ export default function Page() {
         </h1>
         <Map />
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }

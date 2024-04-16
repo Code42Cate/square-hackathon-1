@@ -601,8 +601,8 @@ export default function Dashboard() {
                         of 50.000€ goal reached
                       </div>
                     </div>
-                    <div className="relative h-2 rounded-full bg-green-200">
-                      <div className="h-2 w-4/5 rounded-full bg-green-500" />
+                    <div className="relative h-2 rounded-full bg-sky-200">
+                      <div className="h-2 w-4/5 rounded-full bg-sky-500" />
                     </div>
                   </div>
                   <p className="p-4">
