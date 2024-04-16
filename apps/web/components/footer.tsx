@@ -1,25 +1,21 @@
 const navigation = {
-  solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
+  cities: [
+    { name: "Karlsruhe", href: "/cities/karlsruhe" },
+    { name: "San Francisco", href: "/cities/san-francisco" },
+    { name: "New York", href: "/cities/new-york" },
+    { name: "Thessaloniki", href: "/cities/thessaloniki" },
   ],
-  support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
+  projects: [
+    { name: "Playground", href: "#" },
+    { name: "Church", href: "#" },
+    { name: "Maultaschenlinie", href: "#" },
   ],
   company: [
     { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
     { name: "Press", href: "#" },
     { name: "Partners", href: "#" },
   ],
   legal: [
-    { name: "Claim", href: "#" },
     { name: "Privacy", href: "#" },
     { name: "Terms", href: "#" },
   ],
@@ -117,10 +113,10 @@ export default function Footer() {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Solutions
+                  Cities
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.solutions.map((item) => (
+                  {navigation.cities.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
@@ -134,10 +130,10 @@ export default function Footer() {
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Support
+                  Projects
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.support.map((item) => (
+                  {navigation.projects.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
