@@ -11,13 +11,13 @@ const navigation = {
     { name: "Maultaschenlinie", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "About", href: "/about" },
+    { name: "Press", href: "/about" },
+    { name: "Partners", href: "/about" },
   ],
   legal: [
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
+    { name: "Privacy", href: "/about" },
+    { name: "Terms", href: "/about" },
   ],
   social: [
     {
