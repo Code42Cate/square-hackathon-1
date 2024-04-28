@@ -49,7 +49,7 @@ export default function Page() {
         </div>
 
         <div className="col-span-2 grid w-full grid-cols-2 gap-x-4 gap-y-2 rounded-lg">
-          <div className="relative h-48 space-y-1 rounded-lg shadow-md">
+          <div className="relative h-48 space-y-1 rounded-lg">
             <Image
               priority
               src="https://images.unsplash.com/photo-1712578980535-ee64f5a3ee3a?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -68,7 +68,7 @@ export default function Page() {
               Baut ne coole Kirche
             </div>
           </div>
-          <div className="relative h-48 space-y-1 rounded-lg shadow-md">
+          <div className="relative h-48 space-y-1 rounded-lg">
             <Image
               priority
               src="https://images.unsplash.com/photo-1712730642507-d4ad0904e997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -83,7 +83,7 @@ export default function Page() {
             <div>Finanziert meine Wohnung 🥺</div>
           </div>
 
-          <div className="relative row-start-2 flex h-48 flex-col space-y-1 rounded-lg shadow-md">
+          <div className="relative row-start-2 flex h-48 flex-col space-y-1 rounded-lg">
             <Image
               priority
               src="https://images.unsplash.com/photo-1712222237160-a4a3d6be5e1c?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -98,7 +98,7 @@ export default function Page() {
             <div>Baum hihi XD</div>
           </div>
 
-          <div className="row-start-2 flex h-48 flex-col items-center justify-center rounded-lg border border-gray-400 shadow-md transition-all hover:scale-105">
+          <div className="row-start-2 flex h-48 flex-col items-center justify-center rounded-lg border border-gray-400 transition-all hover:scale-105">
             <PlusIcon size={32} className="text-gray-400" />
 
             <div className="text-gray-700">Start your dream</div>
