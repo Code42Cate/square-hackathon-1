@@ -8,7 +8,26 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(cuid())
-  email String  @unique
-  name  String?
+  id    String  @id @default(cuid()) @map("id")
+  email String  @unique @map("email")
+  name  String? @map("name")
+
+  @@map("users")
+}
+
+model Project {
+  id        Int      @id @default(autoincrement()) @map("id")
+  name      String   @map("name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  heroImage      String @map("hero_image")
+  lat            Float  @map("lat")
+  lng            Float  @map("lng")
+  likeCount      Int    @map("like_count")
+  description    String @map("description")
+  fundingGoal    Int    @map("funding_goal")
+  fundingCurrent Int    @map("funding_current")
+
+  @@map("projects")
 }

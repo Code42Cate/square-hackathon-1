@@ -110,7 +110,7 @@ export default function Page() {
         <h1 className="text-2xl font-medium">
           Local shops that support your campaign
         </h1>
-        <Map />
+        <Map lat={0} lng={0} />
       </div>
     </>
   );

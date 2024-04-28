@@ -609,7 +609,7 @@ export default function Dashboard() {
                     Join us for a heartwarming community initiative as we embark
                     on a fundraising journey to build a brand new playground in
                     the vibrant Karlsruher Oststadt! With laughter, joy, and
-                    boundless imagination in mind, we're rallying together to
+                    boundless imagination in mind, were rallying together to
                     create a safe and engaging space for children to explore,
                     play, and grow. Our fundraiser promises to be an event
                     filled with fun and purpose, as we gather friends, families,
@@ -621,13 +621,13 @@ export default function Dashboard() {
                     entertainment, all set against the backdrop of our shared
                     vision for a brighter, more playful future. Every donation,
                     no matter how big or small, brings us one step closer to
-                    realizing this dream. Together, let's transform our
-                    community by providing a haven where children can unleash
-                    their creativity, make new friends, and forge lasting
-                    memories. Mark your calendars and join us in making a
-                    difference in the Karlsruher Oststadt. Together, we can
-                    build more than just a playground – we can build a legacy of
-                    togetherness, joy, and endless possibilities.
+                    realizing this dream. Together, lets transform our community
+                    by providing a haven where children can unleash their
+                    creativity, make new friends, and forge lasting memories.
+                    Mark your calendars and join us in making a difference in
+                    the Karlsruher Oststadt. Together, we can build more than
+                    just a playground – we can build a legacy of togetherness,
+                    joy, and endless possibilities.
                   </p>
                 </div>{" "}
               </Card>

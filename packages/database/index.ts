@@ -1,4 +1,4 @@
-export type { Polygon } from "@prisma/client";
+export type { Project } from "@prisma/client";
 
 import { PrismaClient } from "@prisma/client";
 
