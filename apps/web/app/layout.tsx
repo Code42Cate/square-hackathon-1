@@ -18,7 +18,7 @@ export default function RootLayout({
           <div className="mt-2 flex h-16 w-full flex-row items-center justify-between">
             <CreateCampaignButton />
             <div className="text-2xl font-medium text-sky-600">
-              Impact <sup>2</sup>
+              Impact<sup>2</sup>
             </div>
             <Link
               href="/"
