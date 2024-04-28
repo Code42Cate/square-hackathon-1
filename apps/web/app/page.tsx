@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import React from "react";
 import Map from "@/components/map";
 import HeartIcon from "@/components/heart";
-import { EyeIcon, MapIcon, PlusIcon } from "lucide-react";
-import Footer from "@/components/footer";
-import Link from "next/link";
+import { PlusIcon } from "lucide-react";
 
 export default function Page() {
   React.useEffect(() => {
