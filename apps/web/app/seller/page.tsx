@@ -5,7 +5,6 @@ import {
   Home,
   LineChart,
   ListFilter,
-  MoreHorizontal,
   Package,
   Package2,
   PanelLeft,
