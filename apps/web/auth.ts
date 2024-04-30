@@ -8,7 +8,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       type: "oauth", // or "oauth" for OAuth 2 providers
       clientId: process.env.AUTH_APPLICATION_ID, // from the provider's dashboard
       clientSecret: process.env.AUTH_APPLICATION_SECRET, // from the provider's dashboard
-      issuer: "https://connect.squareup.com", // used to get the provider metadata
+      issuer: "https://connect.squareupsandbox.com", // used to get the provider metadata
       authorization: {
         params: { scope: "MERCHANT_PROFILE_READ" },
       },
