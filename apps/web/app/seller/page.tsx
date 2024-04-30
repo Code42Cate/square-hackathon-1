@@ -60,10 +60,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@ui/components/tooltip";
+import { auth } from "@/auth";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await auth();
+
   return (
     <div className="bg-muted/40 flex min-h-screen w-full flex-col">
+      <pre>{JSON.stringify(session, null, 2)}</pre>
       <TooltipProvider>
         <aside className="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
