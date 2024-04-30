@@ -41,7 +41,6 @@ export default function Content() {
           </div>
         </div>
       </Link>
-
       <div className="col-span-2 grid w-full grid-cols-2 gap-x-4 gap-y-2 rounded-lg">
         <Link href="/" className="relative h-56 space-y-1 rounded-lg">
           <Image

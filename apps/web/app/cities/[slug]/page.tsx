@@ -3,6 +3,7 @@ import Map from "@/components/map";
 import { Metadata, ResolvingMetadata } from "next";
 import Content from "@/components/cities/content";
 import { cities } from "../data";
+import Login from "@/components/login";
 
 type Props = {
   params: { slug: string };
@@ -38,6 +39,8 @@ export default function Page(props: Props) {
       <h1 className="text-3xl font-medium">
         Create a campaign to support your Karlsruhe
       </h1>
+
+      <Login />
 
       <Content />
 
