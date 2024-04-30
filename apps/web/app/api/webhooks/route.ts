@@ -76,5 +76,5 @@ export async function POST(request: Request) {
 }
 
 function getUserAccessToken(userId?: string) {
-  return "EAAAl3uEAmzADix5JVWyLWX3o5_j3i95hjFtmwVUQN4dhH1jhKHhfS5lqrD6nx74";
+  return process.env.SQUARE_ACCESS_TOKEN;
 }
