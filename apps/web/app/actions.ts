@@ -3,5 +3,7 @@
 import { signIn } from "@/auth";
 
 export async function Signin() {
-  return signIn("square");
+  return signIn("square", {
+    redirectTo: "/seller",
+  });
 }
