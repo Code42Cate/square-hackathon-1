@@ -15,9 +15,15 @@ import {
 import Image from "next/image";
 import React from "react";
 import { SocialProof } from "./social-proof";
-import { Project } from "database";
+import { Project, Shop } from "database";
 
-export default function Content({ project }: { project: Project }) {
+export default function Content({
+  project,
+  shops,
+}: {
+  project: Project;
+  shops: Shop[];
+}) {
   const [showMap, setShowMap] = React.useState(false);
   React.useEffect(() => {
     setTimeout(() => {
@@ -47,6 +53,7 @@ export default function Content({ project }: { project: Project }) {
           </Button>
           {showMap ? (
             <Map
+              shops={shops}
               lat={project.lat}
               lng={project.lng}
               className="h-full w-full"

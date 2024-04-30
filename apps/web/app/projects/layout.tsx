@@ -16,7 +16,7 @@ export default function RootLayout({
           Impact<sup>2</sup>
         </div>
         <Link
-          href="/"
+          href="/seller"
           className="hover:scale-102 flex h-10 cursor-pointer flex-row items-center truncate rounded-full border border-gray-500 px-2 py-1 text-xs text-gray-700 hover:border-gray-700 hover:text-gray-900 hover:transition-all md:text-base"
         >
           Join as a local seller

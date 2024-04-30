@@ -73,7 +73,9 @@ export function CreateCampaignButton() {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Create Change 🚀</Button>
+          <form>
+            <Button type="submit">Create Change 🚀</Button>
+          </form>
         </DialogFooter>
       </DialogContent>
     </Dialog>

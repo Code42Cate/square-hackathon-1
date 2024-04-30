@@ -4,6 +4,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import Content from "@/components/cities/content";
 import { cities } from "../data";
 import Login from "@/components/login";
+import { prisma } from "database";
 
 type Props = {
   params: { slug: string };
@@ -28,11 +29,26 @@ export async function generateMetadata(
   };
 }
 
-export default function Page(props: Props) {
+export default async function Page(props: Props) {
   const city = cities.find((city) => city.slug === props.params.slug);
   if (!city) {
     return <div>City not found</div>;
   }
+
+  const projects = await prisma.project.findMany({
+    where: {
+      city: city.slug,
+    },
+    orderBy: {
+      likeCount: "desc",
+    },
+  });
+
+  const shops = await prisma.shop.findMany({
+    where: {
+      city: city.slug,
+    },
+  });
 
   return (
     <>
@@ -40,15 +56,17 @@ export default function Page(props: Props) {
         Create a campaign to support your Karlsruhe
       </h1>
 
-      <Login />
-
-      <Content />
+      <Content projects={projects} />
 
       <div className="mt-20 flex flex-col gap-4">
         <h1 className="text-2xl font-medium">
           Local shops that support your campaign
         </h1>
-        <Map lat={city.coordinates.lat} lng={city.coordinates.lng} />
+        <Map
+          shops={shops}
+          lat={city.coordinates.lat}
+          lng={city.coordinates.lng}
+        />
       </div>
     </>
   );

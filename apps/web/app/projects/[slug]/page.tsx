@@ -13,6 +13,12 @@ export default async function Page({
     },
   });
 
+  const shops = await prisma.shop.findMany({
+    where: {
+      city: project.city,
+    },
+  });
+
   if (!project) {
     return (
       <div className="mx-auto mt-20 flex max-w-7xl flex-col items-center justify-center text-3xl font-bold">
@@ -23,7 +29,7 @@ export default async function Page({
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col">
-      <ProjectPage project={project} />
+      <ProjectPage project={project} shops={shops} />
     </div>
   );
 }

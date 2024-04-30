@@ -63,6 +63,7 @@ import { redirect } from "next/navigation";
 import { getProducts } from "../actions";
 import EnableCrowdfunding from "@/components/enable-crowdfunding";
 import { Toaster } from "sonner";
+import { prisma } from "database";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -73,6 +74,12 @@ export default async function Dashboard() {
   }
 
   const products = await getProducts();
+
+  const project = await prisma.project.findFirst({
+    orderBy: {
+      likeCount: "desc",
+    },
+  });
 
   return (
     <div className="bg-muted/40 flex min-h-screen w-full flex-col">
@@ -251,11 +258,11 @@ export default async function Dashboard() {
                 <Card x-chunk="dashboard-05-chunk-1">
                   <CardHeader className="pb-2">
                     <CardDescription>This Project</CardDescription>
-                    <CardTitle className="text-4xl">EUR 0</CardTitle>
+                    <CardTitle className="text-4xl">€ 431</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-muted-foreground text-xs">
-                      +0% from last week
+                      +10% from last week
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -265,11 +272,11 @@ export default async function Dashboard() {
                 <Card x-chunk="dashboard-05-chunk-2">
                   <CardHeader className="pb-2">
                     <CardDescription>All Time</CardDescription>
-                    <CardTitle className="text-4xl">EUR 0</CardTitle>
+                    <CardTitle className="text-4xl">€ 6030</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-muted-foreground text-xs">
-                      +0% from last month
+                      +14% from last month
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -359,7 +366,7 @@ export default async function Dashboard() {
                                   {product.description}
                                 </div>
                               </TableCell>
-                              <TableCell>{product.price / 100} EUR</TableCell>
+                              <TableCell>{product.price / 100} €</TableCell>
                               <TableCell className="hidden md:table-cell">
                                 <div className="flex flex-row items-center gap-2">
                                   <Slider
@@ -397,7 +404,7 @@ export default async function Dashboard() {
                 <div className="col-span-2 h-full rounded-lg">
                   <Image
                     priority
-                    src="https://images.unsplash.com/photo-1611153532158-7fbd608cbb2a?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src={project.heroImage}
                     width={600}
                     height={400}
                     alt="ALS"
@@ -405,44 +412,21 @@ export default async function Dashboard() {
                   />
 
                   <div className="flex flex-col gap-2 p-4">
-                    <h2 className="text-xl font-medium">
-                      Baut einen neuen Spielplatz ihr Nudeln
-                    </h2>
+                    <h2 className="text-xl font-medium">{project.name}</h2>
 
                     <div className="flex flex-row items-baseline gap-2">
-                      <div className="font-semibold">21.445€</div>
+                      <div className="font-semibold">
+                        {project.fundingCurrent}€
+                      </div>
                       <div className="text-xs text-neutral-600">
-                        of 50.000€ goal reached
+                        of {project.fundingGoal}€ goal reached
                       </div>
                     </div>
                     <div className="relative h-2 rounded-full bg-sky-200">
                       <div className="h-2 w-4/5 rounded-full bg-sky-500" />
                     </div>
                   </div>
-                  <p className="p-4">
-                    Join us for a heartwarming community initiative as we embark
-                    on a fundraising journey to build a brand new playground in
-                    the vibrant Karlsruher Oststadt! With laughter, joy, and
-                    boundless imagination in mind, were rallying together to
-                    create a safe and engaging space for children to explore,
-                    play, and grow. Our fundraiser promises to be an event
-                    filled with fun and purpose, as we gather friends, families,
-                    and neighbors alike to support this important cause.
-                  </p>
-
-                  <p className="p-4">
-                    Picture a bustling scene of bake sales, raffles, and live
-                    entertainment, all set against the backdrop of our shared
-                    vision for a brighter, more playful future. Every donation,
-                    no matter how big or small, brings us one step closer to
-                    realizing this dream. Together, lets transform our community
-                    by providing a haven where children can unleash their
-                    creativity, make new friends, and forge lasting memories.
-                    Mark your calendars and join us in making a difference in
-                    the Karlsruher Oststadt. Together, we can build more than
-                    just a playground – we can build a legacy of togetherness,
-                    joy, and endless possibilities.
-                  </p>
+                  <p className="p-4">{project.description}</p>
                 </div>{" "}
               </Card>
             </div>
