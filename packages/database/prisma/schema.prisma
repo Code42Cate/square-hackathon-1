@@ -39,9 +39,29 @@ model Shop {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
-  lat  Float  @map("lat")
-  lng  Float  @map("lng")
-  city String @map("city")
+  lat     Float     @map("lat")
+  lng     Float     @map("lng")
+  city    String    @map("city")
+  Product Product[]
 
   @@map("shops")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement()) @map("id")
+  name      String   @map("name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  price        Int    @map("price")
+  description  String @map("description")
+  image        String @map("image")
+  shopId       Int    @map("shop_id")
+  squareItemId String @map("square_item_id")
+
+  percentageContributed Int @map("percentage_contributed")
+
+  Shop Shop @relation(fields: [shopId], references: [id])
+
+  @@map("products")
 }
