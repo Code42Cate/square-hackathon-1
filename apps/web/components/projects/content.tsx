@@ -25,11 +25,13 @@ export default function Content({ project }: { project: Project }) {
     }, 2000);
   }, []);
   return (
-    <main className="grid grid-cols-3 gap-6">
+    <main className="grid grid-cols-3 gap-6 px-4 py-2">
       <Toaster />
-      <h1 className="col-span-3 text-4xl font-bold">{project.name}</h1>
-      <div className="col-span-2">
-        <div className="border-neutral relative h-[500px] rounded-2xl border shadow-sm">
+      <h1 className="col-span-3 text-balance text-3xl font-medium">
+        {project.name}
+      </h1>
+      <div className="col-span-3 md:col-span-2">
+        <div className="border-neutral relative h-min rounded-2xl border shadow-sm">
           <Button
             variant="secondary"
             onClick={() => {
@@ -44,7 +46,11 @@ export default function Content({ project }: { project: Project }) {
             )}
           </Button>
           {showMap ? (
-            <Map lat={project.lat} lng={project.lng} />
+            <Map
+              lat={project.lat}
+              lng={project.lng}
+              className="h-full w-full"
+            />
           ) : (
             <Image
               priority
@@ -72,9 +78,9 @@ export default function Content({ project }: { project: Project }) {
           </p>
         </div>
 
-        <p>{project.description}</p>
+        <p className="text-pretty">{project.description}</p>
       </div>
-      <div className="col-span-1 flex flex-col gap-4 px-4">
+      <div className="col-span-3 flex flex-col gap-4 md:col-span-1">
         <div className="flex flex-row items-baseline gap-2">
           <div className="text-xl font-bold">{project.fundingCurrent}€</div>
           <div className="text-sm text-neutral-600">

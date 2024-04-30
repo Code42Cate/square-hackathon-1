@@ -14,6 +14,7 @@ const navigation = {
     { name: "About", href: "/about" },
     { name: "Press", href: "/about" },
     { name: "Partners", href: "/about" },
+    { name: "Pitch", href: "/about" },
   ],
   legal: [
     { name: "Privacy", href: "/about" },

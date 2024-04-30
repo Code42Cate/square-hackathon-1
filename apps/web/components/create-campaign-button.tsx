@@ -19,7 +19,7 @@ export function CreateCampaignButton() {
       <DialogTrigger asChild>
         <Button
           variant="link"
-          className="hover:scale-102 cursor-pointer rounded-full border border-gray-500 px-2 py-1 text-gray-700 hover:border-gray-700 hover:text-gray-900 hover:no-underline hover:transition-all"
+          className="hover:scale-102 h-10 cursor-pointer rounded-full border border-gray-500 px-2 py-1 text-xs leading-tight text-gray-700 hover:border-gray-700 hover:text-gray-900 hover:no-underline hover:transition-all md:text-base"
         >
           Create Campaign
         </Button>

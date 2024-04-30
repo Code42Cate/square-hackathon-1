@@ -2,14 +2,23 @@
 import React, { useRef, useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import clsx from "clsx";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY29kZTQyY2F0ZSIsImEiOiJjbHU5MG15NzEwNGJpMmpta2gzNWMxazFqIn0.DmdGNtsf_SCeRxqEDlt0UQ";
 
-export default function Map({ lng, lat }: { lng: number; lat: number }) {
+export default function Map({
+  lng,
+  lat,
+  className,
+}: {
+  className?: string;
+  lng: number;
+  lat: number;
+}) {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [zoom, setZoom] = useState(16);
+  const [zoom] = useState(16);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -35,7 +44,10 @@ export default function Map({ lng, lat }: { lng: number; lat: number }) {
   return (
     <div
       ref={mapContainer}
-      className="h-full min-h-[400px] w-full overflow-hidden rounded-2xl border"
+      className={clsx(
+        "h-full min-h-[400px] w-full overflow-hidden rounded-2xl border",
+        className,
+      )}
     />
   );
 }
