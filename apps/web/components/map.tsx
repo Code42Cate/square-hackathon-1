@@ -32,11 +32,8 @@ export default function Map({
       dragPan: true,
     });
 
-    const el = document.createElement("div");
-    el.className = "w-8 h-8 bg-red-500 rounded-full";
-
     // set marker
-    new mapboxgl.Marker(el)
+    new mapboxgl.Marker()
       .setLngLat([8.409056081007058, 49.00927741395377])
       .addTo(map.current);
   });

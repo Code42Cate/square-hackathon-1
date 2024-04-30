@@ -3,7 +3,8 @@ import Image from "next/image";
 import React from "react";
 import HeartIcon from "@/components/heart";
 import { toast } from "sonner";
-import { PlusIcon } from "lucide-react";
+import Link from "next/link";
+import { CreateCampaignButton } from "../create-campaign-card";
 
 export default function Content() {
   React.useEffect(() => {
@@ -14,7 +15,7 @@ export default function Content() {
 
   return (
     <main className="grid grid-cols-2 gap-6 md:grid-cols-4">
-      <div className="col-span-2 min-h-[480px] rounded-lg">
+      <Link href="/" className="col-span-2 min-h-[480px] rounded-lg">
         <Image
           priority
           src="https://images.unsplash.com/photo-1611153532158-7fbd608cbb2a?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -39,10 +40,10 @@ export default function Content() {
             <div className="h-2 w-4/5 rounded-full bg-sky-500" />
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="col-span-2 grid w-full grid-cols-2 gap-x-4 gap-y-2 rounded-lg">
-        <div className="relative h-56 space-y-1 rounded-lg">
+        <Link href="/" className="relative h-56 space-y-1 rounded-lg">
           <Image
             priority
             src="https://images.unsplash.com/photo-1712578980535-ee64f5a3ee3a?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -60,8 +61,8 @@ export default function Content() {
           <div className="flex flex-row items-center gap-2">
             Baut ne coole Kirche
           </div>
-        </div>
-        <div className="relative h-56 space-y-1 rounded-lg">
+        </Link>
+        <Link href="/" className="relative h-56 space-y-1 rounded-lg">
           <Image
             priority
             src="https://images.unsplash.com/photo-1712730642507-d4ad0904e997?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -74,9 +75,12 @@ export default function Content() {
             <HeartIcon className="text-red-500" />3 likes
           </span>
           <div className="truncate">Finanziert meine Wohnung 🥺</div>
-        </div>
+        </Link>
 
-        <div className="relative row-start-2 flex h-56 flex-col space-y-1 rounded-lg">
+        <Link
+          href="/"
+          className="relative row-start-2 flex h-56 flex-col space-y-1 rounded-lg"
+        >
           <Image
             priority
             src="https://images.unsplash.com/photo-1712222237160-a4a3d6be5e1c?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -89,13 +93,9 @@ export default function Content() {
             <HeartIcon className="text-red-500" />0 likes
           </span>
           <div>Baum hihi XD</div>
-        </div>
+        </Link>
 
-        <div className="row-start-2 flex h-48 flex-col items-center justify-center rounded-lg border border-gray-400 transition-all hover:scale-105">
-          <PlusIcon size={32} className="text-gray-400" />
-
-          <div className="text-gray-700">Start your dream</div>
-        </div>
+        <CreateCampaignButton />
       </div>
     </main>
   );

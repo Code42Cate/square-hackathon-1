@@ -28,6 +28,20 @@ model Project {
   description    String @map("description")
   fundingGoal    Int    @map("funding_goal")
   fundingCurrent Int    @map("funding_current")
+  city           String @map("city")
 
   @@map("projects")
+}
+
+model Shop {
+  id        Int      @id @default(autoincrement()) @map("id")
+  name      String   @map("name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  lat  Float  @map("lat")
+  lng  Float  @map("lng")
+  city String @map("city")
+
+  @@map("shops")
 }
