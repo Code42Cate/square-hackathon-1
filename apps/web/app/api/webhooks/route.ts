@@ -1,3 +1,4 @@
+import { getUserAccessToken } from "@/auth";
 import { prisma } from "database";
 import { Client, Environment } from "square";
 
@@ -73,8 +74,4 @@ export async function POST(request: Request) {
   });
 
   return new Response("OK", { status: 200 });
-}
-
-function getUserAccessToken(userId?: string) {
-  return process.env.SQUARE_ACCESS_TOKEN;
 }

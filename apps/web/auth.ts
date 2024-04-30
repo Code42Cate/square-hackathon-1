@@ -15,3 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   ],
 });
+
+export function getUserAccessToken(userId?: string) {
+  return process.env.SQUARE_ACCESS_TOKEN; // for demo purposes
+}

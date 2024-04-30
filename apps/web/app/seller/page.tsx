@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { Slider } from "@ui/components/slider";
 
-import { Badge } from "@ui/components/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -60,13 +59,25 @@ import {
   TooltipTrigger,
 } from "@ui/components/tooltip";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { getProducts } from "../actions";
+import EnableCrowdfunding from "@/components/enable-crowdfunding";
+import { Toaster } from "sonner";
 
 export default async function Dashboard() {
   const session = await auth();
 
+  if (session === undefined) {
+    redirect("/signin");
+    return;
+  }
+
+  const products = await getProducts();
+
   return (
     <div className="bg-muted/40 flex min-h-screen w-full flex-col">
-      <pre>{JSON.stringify(session, null, 2)}</pre>
+      <Toaster />
+
       <TooltipProvider>
         <aside className="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
@@ -95,47 +106,11 @@ export default async function Dashboard() {
                   href="#"
                   className="bg-accent text-accent-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
                 >
-                  <ShoppingCart className="h-5 w-5" />
-                  <span className="sr-only">Orders</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Orders</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-                >
                   <Package className="h-5 w-5" />
                   <span className="sr-only">Products</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Products</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-                >
-                  <Users2 className="h-5 w-5" />
-                  <span className="sr-only">Customers</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Customers</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-                >
-                  <LineChart className="h-5 w-5" />
-                  <span className="sr-only">Analytics</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Analytics</TooltipContent>
             </Tooltip>
           </nav>
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
@@ -270,17 +245,17 @@ export default async function Dashboard() {
                     </CardDescription>
                   </CardHeader>
                   <CardFooter>
-                    <Button>Enable Crowdfunding</Button>
+                    <EnableCrowdfunding />
                   </CardFooter>
                 </Card>
                 <Card x-chunk="dashboard-05-chunk-1">
                   <CardHeader className="pb-2">
                     <CardDescription>This Project</CardDescription>
-                    <CardTitle className="text-4xl">$1,329</CardTitle>
+                    <CardTitle className="text-4xl">EUR 0</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-muted-foreground text-xs">
-                      +25% from last week
+                      +0% from last week
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -290,11 +265,11 @@ export default async function Dashboard() {
                 <Card x-chunk="dashboard-05-chunk-2">
                   <CardHeader className="pb-2">
                     <CardDescription>All Time</CardDescription>
-                    <CardTitle className="text-4xl">$5,329</CardTitle>
+                    <CardTitle className="text-4xl">EUR 0</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-muted-foreground text-xs">
-                      +10% from last month
+                      +0% from last month
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -306,8 +281,12 @@ export default async function Dashboard() {
                 <div className="flex items-center">
                   <TabsList>
                     <TabsTrigger value="week">Recent</TabsTrigger>
-                    <TabsTrigger value="month">Bestseller</TabsTrigger>
-                    <TabsTrigger value="year">Archived</TabsTrigger>
+                    <TabsTrigger disabled value="month">
+                      Bestseller
+                    </TabsTrigger>
+                    <TabsTrigger disabled value="year">
+                      Archived
+                    </TabsTrigger>
                   </TabsList>
                   <div className="ml-auto flex items-center gap-2">
                     <DropdownMenu>
@@ -353,221 +332,53 @@ export default async function Dashboard() {
                               <span className="sr-only">Image</span>
                             </TableHead>
                             <TableHead>Name</TableHead>
-                            <TableHead>Status</TableHead>
+                            <TableHead>Description</TableHead>
                             <TableHead>Price</TableHead>
-                            <TableHead className="hidden md:table-cell">
-                              Total Sales
-                            </TableHead>
                             <TableHead className="hidden md:table-cell">
                               Crowdfunding Percentage
                             </TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              Laser Lemonade Machine
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline">Draft</Badge>
-                            </TableCell>
-                            <TableCell>$499.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              25
-                            </TableCell>
-                            <TableCell className="hidden gap-2 md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider
-                                  defaultValue={[64]}
-                                  max={100}
-                                  step={1}
+                          {products.map((product) => (
+                            <TableRow>
+                              <TableCell className="hidden sm:table-cell">
+                                <Image
+                                  alt="Product image"
+                                  className="aspect-square rounded-md object-cover"
+                                  height="64"
+                                  src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                  width="64"
                                 />
+                              </TableCell>
+                              <TableCell className="font-medium">
+                                {product.name}
+                              </TableCell>
+                              <TableCell>
+                                <div className="text-muted-foreground">
+                                  {product.description}
+                                </div>
+                              </TableCell>
+                              <TableCell>{product.price / 100} EUR</TableCell>
+                              <TableCell className="hidden md:table-cell">
+                                <div className="flex flex-row items-center gap-2">
+                                  <Slider
+                                    defaultValue={[
+                                      product.percentageContributed,
+                                    ]}
+                                    max={100}
+                                    step={1}
+                                  />
 
-                                <Input
-                                  type="number"
-                                  defaultValue={64}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              Hypernova Headphones
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline">Active</Badge>
-                            </TableCell>
-                            <TableCell>$129.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              100
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider defaultValue={[0]} max={100} step={1} />
-
-                                <Input
-                                  type="number"
-                                  defaultValue={0}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              AeroGlow Desk Lamp
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline">Active</Badge>
-                            </TableCell>
-                            <TableCell>$39.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              50
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider
-                                  defaultValue={[33]}
-                                  max={100}
-                                  step={1}
-                                />
-
-                                <Input
-                                  type="number"
-                                  defaultValue={33}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              TechTonic Energy Drink
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="secondary">Draft</Badge>
-                            </TableCell>
-                            <TableCell>$2.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              0
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider defaultValue={[5]} max={100} step={1} />
-
-                                <Input
-                                  type="number"
-                                  defaultValue={5}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              Gamer Gear Pro Controller
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline">Active</Badge>
-                            </TableCell>
-                            <TableCell>$59.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              75
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider defaultValue={[0]} max={100} step={1} />
-
-                                <Input
-                                  type="number"
-                                  defaultValue={0}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="hidden sm:table-cell">
-                              <Image
-                                alt="Product image"
-                                className="aspect-square rounded-md object-cover"
-                                height="64"
-                                src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=3696&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                width="64"
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">
-                              Luminous VR Headset
-                            </TableCell>
-                            <TableCell>
-                              <Badge variant="outline">Active</Badge>
-                            </TableCell>
-                            <TableCell>$199.99</TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              30
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell">
-                              <div className="flex flex-row items-center gap-2">
-                                <Slider
-                                  defaultValue={[33]}
-                                  max={100}
-                                  step={1}
-                                />
-
-                                <Input
-                                  type="number"
-                                  defaultValue={33}
-                                  className="w-20"
-                                />
-                              </div>
-                            </TableCell>
-                          </TableRow>
+                                  <Input
+                                    type="number"
+                                    defaultValue={product.percentageContributed}
+                                    className="w-20"
+                                  />
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))}
                         </TableBody>
                       </Table>
                     </CardContent>
